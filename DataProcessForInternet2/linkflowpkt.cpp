@@ -1,11 +1,11 @@
 #include<iostream>
-#include<stdlib.h>//int atoi(char *p)charÊı×é×ªint 
+#include<stdlib.h>//int atoi(char *p)charæ•°ç»„è½¬int 
 #include<vector>
 #include<fstream>
 #include<cstring>
 #include<algorithm>
 
-#include"TODO1.h"
+#include"linkflowpkt.h"
 
 using namespace std;
 
@@ -14,9 +14,9 @@ const int LastTime=20*3600;
 vector<int> GetLabel(int begin,char *path);
 void Link(vector<int> tag,string ppath,string fpath,int time,string switchid);
 
-int main(int argc,char *argv[])//µÚÒ»¸ö²ÎÊıÊÇ½Å±¾¿ªÊ¼Ö´ĞĞÊ±¼ä£¬µÚ¶ş¸ö²ÎÊıÊÇlabelsÎÄ¼şµÄÂ·¾¶, µÚÈı¸ö²ÎÊıÊÇpacketinÎÄ¼şµÄÂ·¾¶, µÚËÄ¸ö²ÎÊıÊÇflowtableÎÄ¼şµÄÂ·¾¶,µÚÎå¸öÊÇ½»»»»úid¡£ 
+int main(int argc,char *argv[])//ç¬¬ä¸€ä¸ªå‚æ•°æ˜¯è„šæœ¬å¼€å§‹æ‰§è¡Œæ—¶é—´ï¼Œç¬¬äºŒä¸ªå‚æ•°æ˜¯labelsæ–‡ä»¶çš„è·¯å¾„, ç¬¬ä¸‰ä¸ªå‚æ•°æ˜¯packetinæ–‡ä»¶çš„è·¯å¾„, ç¬¬å››ä¸ªå‚æ•°æ˜¯flowtableæ–‡ä»¶çš„è·¯å¾„,ç¬¬äº”ä¸ªæ˜¯äº¤æ¢æœºidã€‚ 
 {
-	//Êı¾İ±êÇ©µÄ´¦Àí 
+	//æ•°æ®æ ‡ç­¾çš„å¤„ç† 
 	/*if(argc!=3) return 0;
 	else
 	{
@@ -30,7 +30,7 @@ int main(int argc,char *argv[])//µÚÒ»¸ö²ÎÊıÊÇ½Å±¾¿ªÊ¼Ö´ĞĞÊ±¼ä£¬µÚ¶ş¸ö²ÎÊıÊÇlabel
 	if(argc!=6) return 0;
 	vector<int> TLable10=GetLabel(atoi(argv[1]),argv[2]);
 	Link(TLable10,argv[3],argv[4],atoi(argv[1]),argv[5]);
-	//packerinµÄ´¦Àí
+	//packerinçš„å¤„ç†
 	
 } 
 void Link(vector<int> tag,string ppath,string fpath,int time,string switchid)
@@ -56,13 +56,13 @@ void Link(vector<int> tag,string ppath,string fpath,int time,string switchid)
 		if(now==ftime) {out<<","<<fstr.substr(11);if(getline(fin,fstr))ftime=stoi(fstr.substr(0,10));}
 		else out<<",-1,-1,-1,-1,-1,-1,-1,-1,-1";
 		if(now==ptime) {out<<","<<pstr.substr(11);if(getline(pin,pstr))ptime=stoi(pstr.substr(0,10));}
-		//Êä³öÄ¬ÈÏÖµ 
+		//è¾“å‡ºé»˜è®¤å€¼ 
 		else out<<",-1,-1";
 		if(find(tag.begin(),tag.end(),now)!=tag.end())out<<",1"<<endl;
 		else out<<",0"<<endl;
 	}
 }
-vector<int> GetLabel(int begin,char *path)//µÚÒ»¸ö²ÎÊıÊÇ½Å±¾¿ªÊ¼Ö´ĞĞÊ±¼ä£¬µÚ¶ş¸ö²ÎÊıÊÇlabelsÎÄ¼şµÄÂ·¾¶¡£ 
+vector<int> GetLabel(int begin,char *path)//ç¬¬ä¸€ä¸ªå‚æ•°æ˜¯è„šæœ¬å¼€å§‹æ‰§è¡Œæ—¶é—´ï¼Œç¬¬äºŒä¸ªå‚æ•°æ˜¯labelsæ–‡ä»¶çš„è·¯å¾„ã€‚ 
 {
 	vector<int> A;
 	ifstream in(path);
