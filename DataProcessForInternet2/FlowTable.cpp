@@ -140,17 +140,20 @@ string PreProcess(string path,string switchid)
 		for(int i=0;i<newf.flow.size();i++)
 		{
 			index=Find(oldf,newf.flow[i]);
-			if(index==-1)
+			if(index==-1)//是一条新的流表项 
 			{
 				if(newf.flow[i].pkt!=0)
 				out<<oldf.time<<" "<<newf.flow[i].sip<<" "<<newf.flow[i].dip<<" "<<newf.flow[i].inport<<" " \
 				<<newf.flow[i].outport<<" "<<newf.flow[i].pkt<<" "<<newf.flow[i].byte<<endl;
 			}
-			else
+			else//有旧的流表项 
 			{
-				if(newf.flow[i].pkt-oldf.flow[index].pkt!=0)
+				if(newf.flow[i].pkt-oldf.flow[index].pkt>0)
 				out<<oldf.time<<" "<<newf.flow[i].sip<<" "<<newf.flow[i].dip<<" "<<newf.flow[i].inport<<" " \
 				<<newf.flow[i].outport<<" "<<newf.flow[i].pkt-oldf.flow[index].pkt<<" "<<newf.flow[i].byte-oldf.flow[index].byte<<endl;
+				else if(newf.flow[i].pkt-oldf.flow[index].pkt<0&&newf.flow[i].pkt!=0)
+				out<<oldf.time<<" "<<newf.flow[i].sip<<" "<<newf.flow[i].dip<<" "<<newf.flow[i].inport<<" " \
+				<<newf.flow[i].outport<<" "<<newf.flow[i].pkt<<" "<<newf.flow[i].byte<<endl;
 			}
 		}
 	}
